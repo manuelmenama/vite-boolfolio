@@ -7,7 +7,8 @@ export default {
   data(){
     return {
       baseUrl: 'http://127.0.0.1:8000/api/',
-      projects: []
+      projects: [],
+      contentMaxLengt: 150
     }
   },
   methods:{
@@ -17,6 +18,12 @@ export default {
           this.projects = result.data.projects;
           console.log(this.projects);
         })
+    },
+    shorterText(text){
+      if(text.length < this.contentMaxLengt){
+        return text.substring(0, this.contentMaxLengt) + '...';
+      }
+      return text;
     }
   },
   mounted(){
@@ -30,6 +37,18 @@ export default {
 
     <h1>Chiamata axios from vue</h1>
 
+    <div class="card-wrapper">
+
+      <div
+        class="card"
+        v-for="project in projects"
+        :key="project.id">
+        <h3>{{ project.name }}</h3>
+        <div v-html="shorterText(project.summary)">
+        </div>
+      </div>
+
+    </div>
 
   </div>
   
