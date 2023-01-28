@@ -3,10 +3,12 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from './pages/Home.vue';
 import About from './pages/About.vue';
 import Contacts from './pages/Contacts.vue';
+import Projects from './pages/Projects.vue';
 import Error404 from './pages/Error404.vue';
  
 const router = createRouter({
   history: createWebHistory(),
+  // linkExactActiveClass: 'active', per cambiuare nome della classe che deve rispondere al criterio del link active
   routes: [
     {
       path: '/',
@@ -22,6 +24,11 @@ const router = createRouter({
       path: '/contacts',
       name: 'contacts',
       component: Contacts
+    },
+    {
+      path: '/projects',
+      name: 'projects',
+      component: Projects
     },
     {
       path: '/:pathMatch(.*)*',

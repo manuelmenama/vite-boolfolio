@@ -13,11 +13,14 @@ export default {
 <template>
 
   <Header />
+  <main>
   
-  <div class="container">
+    <div class="container">
 
-    <router-view></router-view>
-  </div>
+      <router-view></router-view>
+    </div>
+    
+  </main>
   
 
 </template>

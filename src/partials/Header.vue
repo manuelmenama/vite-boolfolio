@@ -13,6 +13,9 @@ export default {
         <router-link :to="{ name: 'home' }">home</router-link>
       </li>
       <li>
+        <router-link :to="{ name: 'projects' }">projects</router-link>
+      </li>
+      <li>
         <router-link :to="{ name: 'about' }">about</router-link>
       </li>
       <li>
@@ -25,10 +28,7 @@ export default {
 
 <style lang="scss" scoped>
 
-header{
-  margin: 0 2rem;
-  padding: 3rem 0;
-}
+
 
 ul{
   list-style: none;
@@ -42,7 +42,7 @@ ul{
       text-transform: uppercase;
       
       &:hover,
-      &.active{
+      &.router-link-active{
         color: gray;
       }
     }
