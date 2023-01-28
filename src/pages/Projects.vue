@@ -2,6 +2,8 @@
 
 import axios from 'axios';
 
+import { baseUrl } from '../data/data';
+
 import ProjectItem from '../components/ProjectItem.vue';
 
 export default {
@@ -11,7 +13,7 @@ export default {
   },
   data(){
     return {
-      baseUrl: 'http://127.0.0.1:8000/api/',
+      baseUrl,
       projects: [],
       contentMaxLengt: 50,
       titleMaxLength: 20,
