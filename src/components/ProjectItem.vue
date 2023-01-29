@@ -25,7 +25,7 @@ export default {
             Tipo: {{ project.type? project.type.name : 'nd' }}
         </p>
         <p>
-        <router-link :to="{name: 'projectDetail', params:{slug: project.slug}}">
+        <router-link :to="{name: 'detail', params:{slug: project.slug}}">
             &rarr;        
         </router-link>
         </p>

@@ -9,7 +9,9 @@ export default {
     data(){
         return{
             baseUrl,
-            project: null
+            project: {},
+            type: {},
+            tecnologies: {}
         }
     },
     methods: {
@@ -17,6 +19,8 @@ export default {
             axios.get(baseUrl + 'projects/' + this.$route.params.slug)
                 .then(result =>{
                     this.project = result.data;
+                    this.type = this.project.type;
+                    this.tecnologies = this.project.tecnologies;
                     console.log(this.project);
                 })
         }
@@ -28,14 +32,30 @@ export default {
 </script>
 
 <template>
-    <h3>{{ project.name }}</h3>
-    <h6>Tipo: {{ project.type.name }}</h6>
-    <p>
-        {{ project.summary }}
+    <h3>{{ this.project.name }}</h3>
+    <h6>Tipo: {{ this.type.name }}</h6>
+    <p v-html="this.project.summary">
     </p>
+    <img :src="this.project.image" alt="">
+    <div v-if="tecnologies">
+        <span v-for="tech in tecnologies" :key="tech.id">{{ tech.name }}</span>
+    </div>
 
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
+
+img{
+    width: 400px;
+}
+
+span{
+    display: inline-block;
+    border: 1px solid black;
+    background-color: white;
+    padding: 0.5rem 1rem;
+    margin-right: 1rem;
+    border-radius: 0.5rem;
+}
     
 </style>
