@@ -36,7 +36,7 @@ export default {
     <h6>Tipo: {{ this.type.name }}</h6>
     <p v-html="this.project.summary">
     </p>
-    <img :src="this.project.image" alt="">
+    <img :src="this.project.cover_image" :alt="this.project.image_original_name">
     <div v-if="tecnologies">
         <span v-for="tech in tecnologies" :key="tech.id">{{ tech.name }}</span>
     </div>
