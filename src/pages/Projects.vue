@@ -4,17 +4,21 @@ import axios from 'axios';
 
 import { baseUrl } from '../data/data';
 
+import { store } from '../data/store';
+
 import ProjectItem from '../components/ProjectItem.vue';
+import FormSearch from '../components/FormSearch.vue';
 
 export default {
   name: 'Projects',
   components: {
-    ProjectItem
+    ProjectItem,
+    FormSearch
   },
   data(){
     return {
       baseUrl,
-      projects: [],
+      store,
       contentMaxLengt: 50,
       titleMaxLength: 20,
       pagination: {
@@ -33,10 +37,11 @@ export default {
         }
       })
         .then(result => {
-          this.projects = result.data.projects.data;
+          store.projects = result.data.projects.data;
           this.pagination.current = result.data.projects.current_page;
           this.pagination.last = result.data.projects.last_page;
-          console.log(this.projects);
+          console.log(store.projects);
+          store.showPaginator = true;
         })
     }
   },
@@ -48,18 +53,19 @@ export default {
 
 <template>
   
-
+    <FormSearch />
     <div class="card-wrapper">
 
+
         <ProjectItem
-            v-for="project in projects"
+            v-for="project in store.projects"
             :key="project.id"
             :project="project"        
         />
 
     </div>
 
-    <div class="paginator">
+    <div v-if="store.showPaginator" class="paginator">
         <button
             :disabled="pagination.current === 1"
             @click="getApi(pagination.current - 1)">
