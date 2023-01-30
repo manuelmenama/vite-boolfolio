@@ -11,7 +11,8 @@ export default {
             baseUrl,
             project: {},
             type: {},
-            tecnologies: {}
+            tecnologies: {},
+            user: {},
         }
     },
     methods: {
@@ -21,6 +22,7 @@ export default {
                     this.project = result.data;
                     this.type = this.project.type;
                     this.tecnologies = this.project.tecnologies;
+                    this.user = this.project.user
                     console.log(this.project);
                 })
         }
@@ -34,6 +36,7 @@ export default {
 <template>
     <h3>{{ this.project.name }}</h3>
     <h6>Tipo: {{ this.type.name }}</h6>
+    <small><i>By {{ this.user.name }}</i></small>
     <p v-html="this.project.summary">
     </p>
     <img :src="this.project.cover_image" :alt="this.project.image_original_name">
