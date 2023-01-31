@@ -17,7 +17,10 @@ export default {
   methods:{
     getApi(type_id){
       axios.get(baseUrl + 'projects/project-type/' + type_id)
-        .then(result =>)
+        .then(result =>{
+          store.projects = result.data.projects;
+          store.showPaginator = false;
+        })
     }
   }
 }
@@ -29,7 +32,7 @@ export default {
     <div class="my-type">
 
       <p>Type:</p>
-      <button v-for="(type) in store.types" :key="type.id">{{ type.name }}</button>
+      <button v-for="(type) in store.types" :key="type.id" @click="getApi(type.id)">{{ type.name }}</button>
     </div>
     <div class="my-type">
 
