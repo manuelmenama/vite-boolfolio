@@ -52,20 +52,25 @@ export default {
 
 .search{
   margin: 20px 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 input{
+  width: calc(80% - 1rem);
   padding: 10px 5px;
-  border: 1px solid black;
   border-radius: 5px;
-  background-color: blanchedalmond;
+  background-color: beige;
+  border: 0;
+  box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 button{
+  width: calc(20%);
   cursor: pointer;
   padding: 10px 5px;
-  border: 1px solid black;
-
+  border: 0;
   border-radius: 5px;
-  background-color: blanchedalmond;
+  background-color: beige;
 }
 
 

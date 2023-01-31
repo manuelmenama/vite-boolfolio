@@ -8,12 +8,14 @@ import { store } from '../data/store';
 
 import ProjectItem from '../components/ProjectItem.vue';
 import FormSearch from '../components/FormSearch.vue';
+import TagsLinks from '../components/TagsLinks.vue';
 
 export default {
   name: 'Projects',
   components: {
     ProjectItem,
-    FormSearch
+    FormSearch,
+    TagsLinks
   },
   data(){
     return {
@@ -38,9 +40,10 @@ export default {
       })
         .then(result => {
           store.projects = result.data.projects.data;
+          store.types = result.data.types;
           this.pagination.current = result.data.projects.current_page;
           this.pagination.last = result.data.projects.last_page;
-          console.log(store.projects);
+          console.log(store.types);
           store.showPaginator = true;
         })
     }
@@ -52,8 +55,19 @@ export default {
 </script>
 
 <template>
-  
-    <FormSearch />
+
+    <div class="top-main">
+      <div class="form-container">
+
+        <FormSearch />
+
+      </div>
+      <div class="link-container">
+
+        <TagsLinks />
+
+      </div>
+    </div>
     <div class="card-wrapper">
 
 
@@ -90,7 +104,18 @@ export default {
 </template>
 
 
-<style lang="scss">
+<style lang="scss" scoped>
+
+.top-main{
+  width: 100%;
+  display: flex;
+  .form-container{
+    width: 25%;
+  }
+  .link-container{
+    width: 75%;
+  }
+}
 
 
 </style>

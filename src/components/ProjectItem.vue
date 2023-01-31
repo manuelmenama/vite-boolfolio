@@ -22,7 +22,7 @@ export default {
     class="card">
     <div class="data">
         <p>
-            Tipo: {{ project.type? project.type.name : 'nd' }} By: {{ project.user.name }}
+            Tipo: {{ project.type? project.type.name : 'nd' }} | By: {{ project.user.name }}
         </p>
         <p>
         <router-link :to="{name: 'detail', params:{slug: project.slug}}">
