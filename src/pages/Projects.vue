@@ -112,6 +112,7 @@ export default {
   display: flex;
   .form-container{
     width: 25%;
+    border-right: 1px solid black;
   }
   .link-container{
     width: 75%;

@@ -62,9 +62,13 @@ export default {
   p{
     font-size: 0.7rem;
   }
-  & p:first-child{
-    margin: 0 1rem;
+  & .my-type:first-child{
+    border-right: 1px solid black;
   }
+  & .my-type:last-child{
+    margin-left: 0.5rem;
+  }
+
 }
 
 button{

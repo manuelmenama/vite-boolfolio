@@ -55,6 +55,7 @@ export default {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  padding-right: 1rem;
 }
 input{
   width: calc(80% - 1rem);
@@ -71,6 +72,7 @@ button{
   border: 0;
   border-radius: 5px;
   background-color: beige;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 
