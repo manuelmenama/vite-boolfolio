@@ -11,7 +11,8 @@ export default {
       baseUrl,
       object: '',
       email: '',
-      subject: ''
+      subject: '',
+      errors: {}
     }
   },
   methods:{
@@ -24,7 +25,10 @@ export default {
       
       axios.post(`${baseUrl}contacts/`, data)
         .then(result=>{
-          console.log(result.data);
+          if(!result.data.success){
+            this.errors = result.data.errors;
+            console.log(this.errors);
+          }
         })
     }
   }
