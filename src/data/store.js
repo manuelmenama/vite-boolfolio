@@ -4,6 +4,7 @@ export const store = reactive({
 
   projects:[],
   types:[],
+  tecnologies:[],
   showPaginator: true,
 
 });

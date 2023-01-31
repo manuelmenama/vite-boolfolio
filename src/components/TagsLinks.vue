@@ -15,8 +15,15 @@ export default {
     }
   },
   methods:{
-    getApi(type_id){
+    getApiByType(type_id){
       axios.get(baseUrl + 'projects/project-type/' + type_id)
+        .then(result =>{
+          store.projects = result.data.projects;
+          store.showPaginator = false;
+        })
+    },
+    getApiByTecnology(tecnology_id){
+      axios.get(baseUrl + 'projects/project-tecnology/' + tecnology_id)
         .then(result =>{
           store.projects = result.data.projects;
           store.showPaginator = false;
@@ -32,12 +39,12 @@ export default {
     <div class="my-type">
 
       <p>Type:</p>
-      <button v-for="(type) in store.types" :key="type.id" @click="getApi(type.id)">{{ type.name }}</button>
+      <button v-for="(type) in store.types" :key="'type'+type.id" @click="getApiByType(type.id)">{{ type.name }}</button>
     </div>
     <div class="my-type">
 
       <p>Tecnology:</p>
-      <button v-for="(type) in store.types" :key="type.id">{{ type.name }}</button>
+      <button v-for="(tecnology) in store.tecnologies" :key="'tec'+tecnology.id" @click="getApiByTecnology(tecnology.id)">{{ tecnology.name }}</button>
     </div>
     
 

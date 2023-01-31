@@ -41,6 +41,7 @@ export default {
         .then(result => {
           store.projects = result.data.projects.data;
           store.types = result.data.types;
+          store.tecnologies = result.data.tecnologies;
           this.pagination.current = result.data.projects.current_page;
           this.pagination.last = result.data.projects.last_page;
           console.log(store.types);
