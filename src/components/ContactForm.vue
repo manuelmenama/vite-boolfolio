@@ -25,9 +25,11 @@ export default {
       
       axios.post(`${baseUrl}contacts/`, data)
         .then(result=>{
-          if(!result.data.success){
-            this.errors = result.data.errors;
-            console.log(this.errors);
+           if(!result.data.success){
+             this.errors = result.data.errors;
+             console.log(this.errors);
+          }else{
+            //ripulire il form
           }
         })
     }
@@ -39,17 +41,17 @@ export default {
 
   <form @submit.prevent="sendForm()">
     <div>
-      <input v-model.trim="object" type="text" placeholder="Oggetto della email..." name="">
-      <p class="error"></p>
+      <input v-model.trim="object" type="text" placeholder="Oggetto della email..." :class="{'is-invalid': errors.object}">
+      <p v-for="(error, index) in errors.object" :key="'obj'+index" class="error">{{ error }}</p>
     </div>
     <div>
-      <input v-model.trim="email" type="text" placeholder="Email: tuaemail@email.com" name="">
-      <p class="error"></p>
+      <input v-model.trim="email" type="text" placeholder="Email: tuaemail@email.com" :class="{'is-invalid': errors.email}">
+      <p v-for="(error, index) in errors.email" :key="'email'+index" class="error">{{ error }}</p>
 
     </div>
     <div>
-      <textarea v-model.trim="subject" cols="30" rows="10">Testo della email...</textarea>
-      <p class="error"></p>
+      <textarea v-model.trim="subject" cols="30" rows="10" :class="{'is-invalid': errors.subject}">Testo della email...</textarea>
+      <p v-for="(error, index) in errors.subject" :key="'subj'+index" class="error">{{ error }}</p>
 
     </div>
     <button type="submit">Invia</button>
@@ -95,6 +97,7 @@ form{
   .error{
     font-size: .8rem;
     color: red;
+    margin-bottom: 1rem;
   }
 }
 
