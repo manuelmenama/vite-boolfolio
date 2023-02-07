@@ -27,8 +27,13 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+header{
+  height: 100px;
+  background-color: rgb(80, 80, 80);
 
-
+  line-height: 100px;
+  margin-bottom: 2rem;
+}
 
 ul{
   list-style: none;
@@ -38,12 +43,13 @@ ul{
     margin-left: 2rem;
     a{
       text-decoration: none;
-      color: black;
+      color: beige;
       text-transform: uppercase;
       
       &:hover,
       &.router-link-active{
-        color: gray;
+        color: rgb(184, 184, 167);
+
       }
     }
   }

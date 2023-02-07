@@ -42,10 +42,25 @@ export default {
           store.projects = result.data.projects.data;
           store.types = result.data.types;
           store.tecnologies = result.data.tecnologies;
+          store.pageLinks = result.data.projects.links;
+          store.currentPage = result.data.projects.current_page;
           this.pagination.current = result.data.projects.current_page;
           this.pagination.last = result.data.projects.last_page;
-          console.log(store.types);
+          console.log(store.pageLinks);
           store.showPaginator = true;
+        })
+    },
+    getApiPage(newApiUrl){
+      axios.get(newApiUrl)
+        .then(result => {
+          store.projects = result.data.projects.data;
+          store.types = result.data.types;
+          store.tecnologies = result.data.tecnologies;
+          store.pageLinks = result.data.projects.links;
+          store.currentPage = result.data.projects.current_page;
+
+          store.showPaginator = true;
+
         })
     }
   },
@@ -82,11 +97,13 @@ export default {
 
     <div v-if="store.showPaginator" class="paginator">
         <button
-            :disabled="pagination.current === 1"
-            @click="getApi(pagination.current - 1)">
-            &larr;
+            v-for="(link, index) in store.pageLinks"
+            :key="index"
+            :class="{active : !link.url || store.currentPage == link.label}"
+            @click="getApiPage(link.url)">
+            {{ link.label }}
         </button>
-        <button
+        <!-- <button
             v-for="i in pagination.last"
             :key="i"
             :disabled="pagination.current === i"
@@ -97,7 +114,7 @@ export default {
             :disabled="pagination.current === pagination.last"
             @click="getApi(pagination.current + 1)">
             &rarr;
-        </button>
+        </button> -->
     </div>
   
 
@@ -106,6 +123,23 @@ export default {
 
 
 <style lang="scss" scoped>
+
+
+button{
+
+  cursor: pointer;
+  background-color: beige;
+  margin-right: 0.5rem;
+  border: 0;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  &.active{
+
+    box-shadow: none;
+    color: gray;
+  }
+
+}
 
 .top-main{
   width: 100%;

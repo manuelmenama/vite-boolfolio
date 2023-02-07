@@ -45,20 +45,32 @@ export default {
     p{
         font-size: 0.65rem;
         display: inline-block;
-        width: 50%;
         align-self: flex-end;
         &:nth-child(1){
+            width: 80%;
             text-align: start;
             padding-bottom: 0.4rem;
         }
         &:nth-child(2){
-            text-align: end;
+            text-align: center;
+            width: 20%;
+
             font-size: 1rem;
             a{
                 text-decoration: none;
+                color: black;
+                display: inline-block;
+                background-color: beige;
+                height: 2rem;
+                width: 2rem;
+                border-radius: 1rem;
+                line-height: 2rem;
+                box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+
                 &:hover,
                 &.router-link-active{
-                    color: red;
+                    color: rgb(184, 184, 167);
+
                 }
             }
         }

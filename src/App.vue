@@ -1,11 +1,13 @@
 <script>
 
 import Header from './partials/Header.vue';
+import Footer from './partials/Footer.vue';
 
 export default {
   name: 'App',
   components: {
-    Header
+    Header,
+    Footer
   }
 }
 </script>
@@ -21,6 +23,8 @@ export default {
     </div>
     
   </main>
+
+  <Footer />
   
 
 </template>
