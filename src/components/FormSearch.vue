@@ -27,10 +27,16 @@ export default {
         }
       })
         .then(result =>{
+
+          store.isLoading = true;
+
           this.searched = '';
           store.projects = result.data.projects.data;
           store.pageLinks = result.data.projects.links;
           store.currentPage = result.data.projects.current_page;
+
+          store.isLoading = false;
+
 
         })
     }

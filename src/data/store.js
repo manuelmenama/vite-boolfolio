@@ -6,6 +6,8 @@ export const store = reactive({
   pageLinks:[],
   types:[],
   tecnologies:[],
-  currentPage: ''
+  currentPage: '',
+  // flag per il controllo del loader
+  isLoading: true
 
 });

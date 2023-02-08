@@ -9,13 +9,15 @@ import { store } from '../data/store';
 import ProjectItem from '../components/ProjectItem.vue';
 import FormSearch from '../components/FormSearch.vue';
 import TagsLinks from '../components/TagsLinks.vue';
+import Loader from '../components/Loader.vue';
 
 export default {
   name: 'Projects',
   components: {
     ProjectItem,
     FormSearch,
-    TagsLinks
+    TagsLinks,
+    Loader
   },
   data(){
     return {
@@ -39,6 +41,9 @@ export default {
         }
       })
         .then(result => {
+
+          store.isLoading = true;
+
           store.projects = result.data.projects.data;
           store.types = result.data.types;
           store.tecnologies = result.data.tecnologies;
@@ -47,17 +52,21 @@ export default {
           this.pagination.current = result.data.projects.current_page;
           this.pagination.last = result.data.projects.last_page;
 
+          store.isLoading = false;
+
         })
     },
     getApiPage(newApiUrl){
       axios.get(newApiUrl)
         .then(result => {
           
+          store.isLoading = true;
 
-            store.projects = result.data.projects.data;
-            store.pageLinks = result.data.projects.links;
-            store.currentPage = result.data.projects.current_page;
+          store.projects = result.data.projects.data;
+          store.pageLinks = result.data.projects.links;
+          store.currentPage = result.data.projects.current_page;
           
+          store.isLoading = false;
 
         })
     }
@@ -82,7 +91,15 @@ export default {
 
       </div>
     </div>
-    <div class="card-wrapper">
+
+    <div v-if="store.isLoading" class="loader-container">
+
+      <Loader />
+
+    </div>
+
+    <div v-if="!store.isLoading" class="card-wrapper">
+
 
 
         <ProjectItem
@@ -93,7 +110,7 @@ export default {
 
     </div>
 
-    <div class="paginator">
+    <div v-if="!store.isLoading" class="paginator">
         <button
             v-for="(link, index) in store.pageLinks"
             :key="index"
@@ -110,6 +127,14 @@ export default {
 
 <style lang="scss" scoped>
 
+.loader-container{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 200px;
+}
 
 button{
 
