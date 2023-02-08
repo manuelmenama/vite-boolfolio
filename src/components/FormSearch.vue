@@ -28,9 +28,9 @@ export default {
       })
         .then(result =>{
           this.searched = '';
-          store.projects = result.data.searched_project;
-          console.log(store.projects);
-          store.showPaginator = false;
+          store.projects = result.data.projects.data;
+          store.pageLinks = result.data.projects.links;
+          store.currentPage = result.data.projects.current_page;
 
         })
     }

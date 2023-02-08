@@ -6,7 +6,6 @@ export const store = reactive({
   pageLinks:[],
   types:[],
   tecnologies:[],
-  showPaginator: true,
   currentPage: ''
 
 });

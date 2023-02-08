@@ -18,15 +18,17 @@ export default {
     getApiByType(type_id){
       axios.get(baseUrl + 'projects/project-type/' + type_id)
         .then(result =>{
-          store.projects = result.data.projects;
-          store.showPaginator = false;
+          store.projects = result.data.projects.data;
+          store.pageLinks = result.data.projects.links;
+          store.currentPage = result.data.projects.current_page;
         })
     },
     getApiByTecnology(tecnology_id){
       axios.get(baseUrl + 'projects/project-tecnology/' + tecnology_id)
         .then(result =>{
-          store.projects = result.data.projects;
-          store.showPaginator = false;
+          store.projects = result.data.projects.data;
+          store.pageLinks = result.data.projects.links;
+          store.currentPage = result.data.projects.current_page;
         })
     }
   }

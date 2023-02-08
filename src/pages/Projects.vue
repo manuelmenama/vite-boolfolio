@@ -46,20 +46,18 @@ export default {
           store.currentPage = result.data.projects.current_page;
           this.pagination.current = result.data.projects.current_page;
           this.pagination.last = result.data.projects.last_page;
-          console.log(store.pageLinks);
-          store.showPaginator = true;
+
         })
     },
     getApiPage(newApiUrl){
       axios.get(newApiUrl)
         .then(result => {
-          store.projects = result.data.projects.data;
-          store.types = result.data.types;
-          store.tecnologies = result.data.tecnologies;
-          store.pageLinks = result.data.projects.links;
-          store.currentPage = result.data.projects.current_page;
+          
 
-          store.showPaginator = true;
+            store.projects = result.data.projects.data;
+            store.pageLinks = result.data.projects.links;
+            store.currentPage = result.data.projects.current_page;
+          
 
         })
     }
@@ -95,26 +93,14 @@ export default {
 
     </div>
 
-    <div v-if="store.showPaginator" class="paginator">
+    <div class="paginator">
         <button
             v-for="(link, index) in store.pageLinks"
             :key="index"
             :class="{active : !link.url || store.currentPage == link.label}"
             @click="getApiPage(link.url)">
-            {{ link.label }}
+            <p v-html="link.label"></p>
         </button>
-        <!-- <button
-            v-for="i in pagination.last"
-            :key="i"
-            :disabled="pagination.current === i"
-            @click="getApi(i)">
-            {{ i }}
-        </button>
-        <button
-            :disabled="pagination.current === pagination.last"
-            @click="getApi(pagination.current + 1)">
-            &rarr;
-        </button> -->
     </div>
   
 
