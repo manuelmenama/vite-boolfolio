@@ -79,7 +79,11 @@ button{
   border-radius: 5px;
   background-color: beige;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s;
+  &:active{
+    box-shadow: none;
+    // transform: scale(0.94);
+  }
 }
-
 
 </style>

@@ -11,7 +11,8 @@ export default {
   data() {
     return{
       store,
-      baseUrl
+      baseUrl,
+      activeItem: null
     }
   },
   methods:{
@@ -43,6 +44,9 @@ export default {
           store.isLoading = false;
 
         })
+    },
+    selectedItem(item){
+      this.activeItem = item;
     }
   }
 }
@@ -54,12 +58,12 @@ export default {
     <div class="my-type">
 
       <p>Type:</p>
-      <button v-for="(type) in store.types" :key="'type'+type.id" @click="getApiByType(type.id)">{{ type.name }}</button>
+      <button v-for="(type) in store.types" :key="'type'+type.id" :class="{active:'type'+type.id === activeItem}" @click="getApiByType(type.id); selectedItem('type'+type.id)">{{ type.name }}</button>
     </div>
-    <div class="my-type">
+    <div class="my-tec">
 
       <p>Tecnology:</p>
-      <button v-for="(tecnology) in store.tecnologies" :key="'tec'+tecnology.id" @click="getApiByTecnology(tecnology.id)">{{ tecnology.name }}</button>
+      <button v-for="(tecnology) in store.tecnologies" :key="'tec'+tecnology.id" :class="{active:'tec'+tecnology.id === activeItem}" @click="getApiByTecnology(tecnology.id); selectedItem('tec'+tecnology.id)">{{ tecnology.name }}</button>
     </div>
     
 
@@ -80,7 +84,7 @@ export default {
   & .my-type:first-child{
     border-right: 1px solid black;
   }
-  & .my-type:last-child{
+  & .my-tec:last-child{
     margin-left: 0.5rem;
   }
 
@@ -97,9 +101,13 @@ button{
   font-size: 0.6rem;
   font-weight: bold;
   cursor: pointer;
+  transition: all 0.2s;
   &:hover,
   &.active{
     color: gray;
+  }
+  &.active{
+    box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.5);
   }
 }
 
